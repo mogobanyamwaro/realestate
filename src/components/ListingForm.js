@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -47,7 +47,7 @@ const ListingForm = (props) => {
     };
 
     setLoading(true);
-    axios
+    axiosInstance
       .post(
         `/listings/search`,
         {

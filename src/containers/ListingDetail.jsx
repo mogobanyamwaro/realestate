@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { Link } from 'react-router-dom';
 
 const ListingDetail = (props) => {
@@ -21,7 +21,7 @@ const ListingDetail = (props) => {
       },
     };
 
-    axios
+    axiosInstance
       .get(`/api/listings/${slug}`, config)
       .then((res) => {
         setListing(res.data);
@@ -40,7 +40,7 @@ const ListingDetail = (props) => {
     };
 
     if (id) {
-      axios
+      axiosInstance
         .get(`${process.env.REACT_APP_API_URL}/api/realtors/${id}`, config)
         .then((res) => {
           setRealtor(res.data);

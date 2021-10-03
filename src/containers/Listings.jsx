@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import Card from '../components/Card';
 import Pagination from '../components/Pagination';
 
@@ -16,7 +16,7 @@ const Listings = () => {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/api/listings/?page=1`);
+        const res = await axiosInstance.get(`/api/listings/?page=1`);
 
         setListings(res.data.results);
         setCount(res.data.count);
@@ -69,7 +69,7 @@ const Listings = () => {
   };
 
   const visitPage = (page) => {
-    axios
+    axiosInstance
       .get(`${process.env.REACT_APP_API_URL}/api/listings/?page=${page}`)
       .then((res) => {
         setListings(res.data.results);
@@ -81,7 +81,7 @@ const Listings = () => {
   };
 
   const previous_number = () => {
-    axios
+    axiosInstance
       .get(previous)
       .then((res) => {
         setListings(res.data.results);
@@ -93,7 +93,7 @@ const Listings = () => {
   };
 
   const next_number = () => {
-    axios
+    axiosInstance
       .get(next)
       .then((res) => {
         setListings(res.data.results);

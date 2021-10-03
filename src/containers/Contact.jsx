@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 import Loader from 'react-loader-spinner';
@@ -35,7 +35,7 @@ const Contact = ({ setAlert }) => {
     };
 
     setLoading(true);
-    axios
+    axiosInstance
       .post(`/api/contacts/`, { name, email, subject, message }, config)
       .then((res) => {
         setAlert('Message Sent', 'success');

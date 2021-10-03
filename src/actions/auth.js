@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { setAlert } from './alert';
 import {
   SIGNUP_SUCCESS,
@@ -18,7 +18,7 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post(`/api/token/`, body, config);
+    const res = await axiosInstance.post(`/api/token/`, body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -47,7 +47,11 @@ export const signup =
     const body = JSON.stringify({ name, email, password, password2 });
 
     try {
-      const res = await axios.post(`/api/accounts/signup`, body, config);
+      const res = await axiosInstance.post(
+        `/api/accounts/signup`,
+        body,
+        config
+      );
 
       dispatch({
         type: SIGNUP_SUCCESS,

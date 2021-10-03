@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import House from '../assets/images/house.jpg';
 
 const About = () => {
@@ -16,7 +16,7 @@ const About = () => {
 
     const getTopSeller = async () => {
       try {
-        const res = await axios.get(`/api/realtors/topseller`, config);
+        const res = await axiosInstance.get(`/api/realtors/topseller`, config);
         setTopSeller(res.data);
       } catch (err) {}
     };
@@ -33,7 +33,7 @@ const About = () => {
 
     const getRealtors = async () => {
       try {
-        const res = await axios.get(`/api/realtors/`, config);
+        const res = await axiosInstance.get(`/api/realtors/`, config);
         setRealtors(res.data);
       } catch (err) {}
     };
